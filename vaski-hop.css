@@ -1,0 +1,50 @@
+body {}
+
+#title {
+  align-items: center;
+  justify-content: center;
+}
+
+.errors {
+  color: red;
+  font-size: 24px;
+}
+
+.gameArea {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 80%;
+  max-height: 80%;
+}
+
+.active {
+  border: solid;
+  border-width: 10px;
+  border-color: #EB8314;
+}
+
+.hidden {
+  display: none;
+}
+
+.player-A-panel {
+  flex-basis: 30%;
+}
+
+.button {
+  flex-basis: 10%;
+  border-radius: 5px;
+  align-self: center;
+}
+
+.player-B-panel {
+  flex-basis: 30%;
+}
+
+.player-img {
+  align-self: center;
+  //background-image: url("http://www.wpclipart.com/education/supplies/scissors/round-tip_scissors_blue.png");
+  width: 200px;
+  height: 200px;
+}
