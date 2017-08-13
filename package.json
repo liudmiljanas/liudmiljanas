@@ -1,0 +1,25 @@
+{
+  "name": "liudmiljanas",
+  "version": "1.0.0",
+  "description": "npm package json for vaski-hp project",
+  "main": "src/vaski-hop.js",
+  "dependencies": {
+    "express": "^4.15.4"
+  },
+  "devDependencies": {
+    "jasmine": "^2.7.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liudmiljanas/liudmiljanas.git"
+  },
+  "author": "Liudas Belickas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liudmiljanas/liudmiljanas/issues"
+  },
+  "homepage": "https://github.com/liudmiljanas/liudmiljanas#readme"
+}
