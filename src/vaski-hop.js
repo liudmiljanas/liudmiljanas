@@ -1,5 +1,3 @@
-// just some useless comment from 2017-08-13. And another one here.
-
 /*vaski chi .
 
 -Player can select 1 out of 3 signs
