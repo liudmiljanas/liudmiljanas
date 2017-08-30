@@ -85,20 +85,17 @@ var showPlayerSelection = function() {
 
 function winner() {
 
-  if (
-    playerSelection === 1 & magicNumber === 1 ||
-    playerSelection === 2 & magicNumber === 2 ||
-    playerSelection === 3 & magicNumber === 3) {
+  if (playerSelection === magicNumber) {
     window.alert("IT'S A BLOODY DRAW");
   } else if (
-    playerSelection === 1 & magicNumber === 2 ||
-    playerSelection === 2 & magicNumber === 3 ||
-    playerSelection === 3 & magicNumber === 1) {
+    playerSelection === 1 && magicNumber === 2 ||
+    playerSelection === 2 && magicNumber === 3 ||
+    playerSelection === 3 && magicNumber === 1) {
     window.alert("PLAYAR WINS");
   } else if (
-    playerSelection === 1 & magicNumber === 3 ||
-    playerSelection === 2 & magicNumber === 1 ||
-    playerSelection === 3 & magicNumber === 2) {
+    playerSelection === 1 && magicNumber === 3 ||
+    playerSelection === 2 && magicNumber === 1 ||
+    playerSelection === 3 && magicNumber === 2) {
     window.alert("COMPUTAR WINS");
   }
 
