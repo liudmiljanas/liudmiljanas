@@ -1,25 +1,11 @@
 {
-  "name": "liudmiljanas",
+  "name": "karmatest",
   "version": "1.0.0",
-  "description": "npm package json for vaski-hp project",
-  "main": "src/vaski-hop.js",
-  "dependencies": {
-    "express": "^4.15.4"
-  },
-  "devDependencies": {
-    "jasmine": "^2.7.0"
-  },
+  "description": "Minimal karma serving project",
+  "main": "index.js",
   "scripts": {
-    "test": "jasmine"
+    "test": "karma start"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/liudmiljanas/liudmiljanas.git"
-  },
-  "author": "Liudas Belickas",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/liudmiljanas/liudmiljanas/issues"
-  },
-  "homepage": "https://github.com/liudmiljanas/liudmiljanas#readme"
+  "author": "",
+  "license": "ISC"
 }
