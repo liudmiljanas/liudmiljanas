@@ -1,6 +1,6 @@
- function init() {
-    console.debug("my init file");
-    var someData = document.getElementById("myDiv").childElementCount;
+function init() {
+    console.debug("my init function");
+    var someData = document.getElementById("myDiv").id;
     setData();
 }
 
