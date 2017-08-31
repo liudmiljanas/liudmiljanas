@@ -17,7 +17,9 @@ module.exports = function(config) {
     files: [
       'src/*.js',
       'spec/*.js',
-      '*.html'
+      '*.html',
+      '*.css',
+      'images/**/*'
 
     ],
 
