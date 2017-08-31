@@ -4,12 +4,21 @@
 -Player can select 1 out of 3 signs
 -Computer player then randomly rolls 1 out of 3 signs
 -The winner is selected, and displayed on screen
-
 */
 
 //declaring most of variables here
 
 var scissors, paper, well, continueButton, resetButton, playerSelection, magicNumber;
+
+// Get's a random integer 1, 2 or 3 .
+var computerSelection = function() {
+  return Math.floor(Math.random() * 3) + 1
+};
+
+function setComputerNumber() {
+  magicNumber = computerSelection();
+  console.log("checking random number: " + magicNumber);
+};
 
 //defining selectors here
 
@@ -33,20 +42,10 @@ var init = function() {
   document.querySelector('#continue').classList.remove('hidden');
   document.querySelector("#playerName").classList.remove('errors')
 
-}
+};
+
 
 init();
-
-
-// Get's a random integer 1, 2 or 3 .
-var computerSelection = function() {
-  return Math.floor(Math.random() * 3) + 1
-};
-
-function setComputerNumber() {
-  magicNumber = computerSelection();
-  console.log("checking random number: " + magicNumber);
-};
 
 
 // saves what pic player has selected, and adds a style frame

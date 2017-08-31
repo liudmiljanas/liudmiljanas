@@ -1,19 +1,23 @@
- 
- //var computerSelection = Math.floor(Math.random() * 3) + 1;
-	
-  it("should provide a number greater than 0", function() {
-    expect(computerSelection()).toBeGreaterThan(0);
-  });
+var storeRandom = computerSelection();
+
+describe("computerSelection", function(){
+		
+//  beforeAll(function() {
+//  });
+//	
+	it("should provide a number greater than 0", function(){
+    	expect(storeRandom).toBeGreaterThan(0);
+  		});
   
-  it ("should provide a number less than 4", function(){
-	 expect(computerSelection()).toBeLessThan(4);
+  	it ("should provide a number less than 4", function(){
+	 	expect(storeRandom).toBeLessThan(4);
+		});
+	
+	it ("should return an integer", function (){
+	 	expect(storeRandom).toEqual(Math.floor(storeRandom));
+		expect(storeRandom).not.toBe(null);
+		});	
 	});
-  it ("should return an integer", function (){
-	 expect(computerSelection()).toEqual(Math.floor(computerSelection()));
-	 expect(computerSelection()).not.toBe(null);
-	 
-  });
-});
 
 
 describe ("init", function(){
