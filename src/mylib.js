@@ -1,4 +1,4 @@
-function init() {
+function mylibinit() {
     console.debug("my init function");
     var someData = document.getElementById("myDiv").id;
     setData();
