@@ -17,7 +17,6 @@ var computerSelection = function() {
 
 function setComputerNumber() {
   magicNumber = computerSelection();
-  console.log("checking random number: " + magicNumber);
 };
 
 //defining selectors here

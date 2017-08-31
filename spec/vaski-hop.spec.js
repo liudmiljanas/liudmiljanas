@@ -2,15 +2,12 @@ var storeRandom = computerSelection();
 
 describe("computerSelection", function(){
 		
-//  beforeAll(function() {
-//  });
-//	
 	it("should provide a number greater than 0", function(){
     	expect(storeRandom).toBeGreaterThan(0);
   		});
   
-  	it ("should provide a number less than 4", function(){
-	 	expect(storeRandom).toBeLessThan(4);
+  	it ("should provide a number =< 3", function(){
+		expect(storeRandom).not.toBeGreaterThan(3);
 		});
 	
 	it ("should return an integer", function (){
@@ -28,4 +25,3 @@ describe ("init", function(){
 		expect(playerSelection).toEqual(-1);
 		});
 	});
-
