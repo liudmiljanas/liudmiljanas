@@ -24,6 +24,16 @@ describe("my suite", function () {
         myAPI.method(10);
         mock.verify();
     });
+    it('should support es6 syntax', () => {
+        expect(1).toBe(1);
+    });
+
+    it('should use sourcemaps from babel', () => {
+        const b = () => 5
+        const c = () => 5
+        const d = () => 5
+        expect(b()).toBe(2);
+    });
 });
 
 describe("sinon example test", function () {
