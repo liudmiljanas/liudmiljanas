@@ -9,5 +9,11 @@ describe("my suite", function () {
         expect(document.getElementById('myDiv').innerText).toBe("New fuckin data");
 
     });
+    it('should work with chai framewrokd', function() {
+        assert.ok('everything', 'everything is ok');
+        // expect('foo').to.not.equal 'bar';
+        // 1.should.not.equal 2;
+        // should.exist 123;
+    });
 });
 
