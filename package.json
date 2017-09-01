@@ -9,10 +9,16 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "eslint": "^4.5.0",
+    "eslint-config-google": "^0.9.1",
     "jasmine-core": "^2.8.0",
     "karma": "^1.7.0",
     "karma-chrome-launcher": "^2.2.0",
+    "karma-eslint": "^2.2.0",
     "karma-html2js-preprocessor": "^1.1.0",
     "karma-jasmine": "^1.1.0"
+  },
+  "dependencies": {
+    "karma-jshint": "^0.1.0"
   }
 }

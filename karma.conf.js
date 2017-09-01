@@ -23,6 +23,10 @@ module.exports = function(config) {
 
     ],
 
+      proxies: {
+          '/images/': '/base/images/',
+          '/vaski-hop.css': '/base/vaski-hop.css'
+      },
 
     // list of files to exclude
     exclude: [
@@ -33,10 +37,21 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-	'**/*.html': ['html2js']
+	    '**/*.html': ['html2js'],
+        // './src/**/*': ['jshint']
+        // '**/*.js': ['eslint']
     },
 
-
+      eslint: {
+          errorThreshold: 1000,
+          stopAboveErrorThreshold: true,
+          stopOnError: false,
+          stopOnWarning: true,
+          showWarnings: true,
+          engine: {
+              configFile: '.eslintrc'
+          }
+      },
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
