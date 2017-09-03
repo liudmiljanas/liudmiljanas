@@ -1,19 +1,21 @@
 describe("computerSelection", function () {
-    beforeEach(function () {
+		beforeEach(function () {
         document.body.innerHTML += __html__['index.html'];
         start();
     });
 
-    it("should provide a number greater than 0", function () {
-        expect(computerSelection()).toBeGreaterThan(0);
-    });
+	var storeRandom = computerSelection();
+	
+    it("should provide a number smaller than 0", function () {
+        expect(storeRandom).toBeGreaterThan(0);
+    	});
 
-    it("should provide a number less than 4", function () {
-        expect(computerSelection()).toBeLessThan(4);
-    });
+    it("should provide a number that's 3 or less", function () {
+        expect(storeRandom).not.toBeGreaterThan(3);
+    	});
     it("should return an integer", function () {
-        // expect(computerSelection()).toEqual(Math.floor(computerSelection())); // wtf ???
-        expect(computerSelection()).not.toBe(null);
+        expect(storeRandom).toEqual(Math.floor(storeRandom));
+        expect(storeRandom).not.toBe(null);
     });
 });
 
