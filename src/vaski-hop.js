@@ -1,31 +1,9 @@
-/*vaski chi .
-
--Player can select 1 out of 3 signs
--Computer player then randomly rolls 1 out of 3 signs
--The winner is selected, and displayed on screen
-
-*/
-
 var scissors, paper, well, continueButton, resetButton, playerSelection, magicNumber;
 
-//declaring most of variables here
+var computerSelection = function () {
+    return Math.floor(Math.random() * 3) + 1;
+};
 
-function start() {
-    initializeVariables();
-    init();
-    addEventListeners();
-}
-
-function initializeVariables() {
-
-    scissors = document.getElementById('scissors');
-    paper = document.getElementById('paper');
-    well = document.getElementById('well');
-    continueButton = document.getElementById('continue');
-    resetButton = document.getElementById('reset')
-}
-
-// function that resets all to starting state
 var init = function () {
     magicNumber = 0;
     playerSelection = -1;
@@ -37,25 +15,29 @@ var init = function () {
     well.classList.remove('active');
     document.querySelector("#playerName").innerHTML = "Choose wisely";
     document.querySelector('#continue').classList.remove('hidden');
-    document.querySelector("#playerName").classList.remove('errors')
-
+    document.querySelector("#playerName").classList.remove('errors');
 };
 
-//init();
+function start() {
+    initializeVariables();
+    init();
+    addEventListeners();
+} 
 
 
-// Get's a random integer 1, 2 or 3 .
-var computerSelection = function () {
-    return Math.floor(Math.random() * 3) + 1
-};
+function initializeVariables() {
+
+    scissors = document.getElementById('scissors');
+    paper = document.getElementById('paper');
+    well = document.getElementById('well');
+    continueButton = document.getElementById('continue');
+    resetButton = document.getElementById('reset');
+} 
 
 function setComputerNumber() {
     magicNumber = computerSelection();
-    console.log("checking random number: " + magicNumber);
-}
+} 
 
-
-// saves what pic player has selected, and adds a style frame
 function addEventListeners() {
     scissors.addEventListener("click", function () {
         scissors.classList.toggle('active');
@@ -87,30 +69,26 @@ function addEventListeners() {
 
 }
 
-// Tells user what he's selected
+
 var showPlayerSelection = function () {
     document.querySelector("#playerName").innerHTML = "Your selection is " + playerSelection;
 };
 
 
-// declares who wins the game 
 
 function winner() {
 
-    if (
-        playerSelection === 1 & magicNumber === 1 ||
-        playerSelection === 2 & magicNumber === 2 ||
-        playerSelection === 3 & magicNumber === 3) {
+    if (playerSelection === magicNumber){
         window.alert("IT'S A BLOODY DRAW");
     } else if (
-        playerSelection === 1 & magicNumber === 2 ||
-        playerSelection === 2 & magicNumber === 3 ||
-        playerSelection === 3 & magicNumber === 1) {
+        playerSelection === 1 && magicNumber === 2 ||
+        playerSelection === 2 && magicNumber === 3 ||
+        playerSelection === 3 && magicNumber === 1) {
         window.alert("PLAYAR WINS");
     } else if (
-        playerSelection === 1 & magicNumber === 3 ||
-        playerSelection === 2 & magicNumber === 1 ||
-        playerSelection === 3 & magicNumber === 2) {
+        playerSelection === 1 && magicNumber === 3 ||
+        playerSelection === 2 && magicNumber === 1 ||
+        playerSelection === 3 && magicNumber === 2) {
         window.alert("COMPUTAR WINS");
     }
 
