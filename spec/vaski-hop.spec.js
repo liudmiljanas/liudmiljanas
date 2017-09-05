@@ -35,9 +35,8 @@ describe("init", function () {
 	});
 	
 	it("should remove player img active classes ", function(){
-		expect(scissors.className).not.toContain("active");
-		expect(paper.className).not.toContain("active");
-		expect(well.className).not.toContain("active");
+		expect(scissors.className, paper.className,well.className).not.toContain("active");
+
 	});
 
 	it("should remove hiding from 'continue' button", function(){
@@ -53,15 +52,9 @@ describe("init", function () {
 		
 });
 
-describe ("start", function(){
-	it("should check if initializeVariables was called ",function(){
-
-	    function start2(initVars) {
-	        initVars() // we will test if this fucker calls this function
-        }
-
-		var spy = sinon.spy(); //spyOn(fuck, initializeVariables);
-        start2(spy);
-		expect(spy.called);
+describe ("initializeVariables", function(){
+	it("should check that selectors are defined", function(){
+		expect(scissors,scissors2,paper,paper2, well, well2).toBeDefined();
+		expect(continueButton, resetButton, playerName).toBeDefined();
 	});
 });
