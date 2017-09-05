@@ -55,8 +55,13 @@ describe("init", function () {
 
 describe ("start", function(){
 	it("should check if initializeVariables was called ",function(){
-		var spy= spyOn(fuck, initializeVariables);
-		var fuck;
-		expect(spy).toHaveBeenCalled();
+
+	    function start2(initVars) {
+	        initVars() // we will test if this fucker calls this function
+        }
+
+		var spy = sinon.spy(); //spyOn(fuck, initializeVariables);
+        start2(spy);
+		expect(spy.called);
 	});
 });
