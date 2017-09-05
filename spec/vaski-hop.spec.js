@@ -28,15 +28,11 @@ describe("init", function () {
         expect(playerSelection).toEqual(-1);
     });
 	
-	it("should make computer imgs hidden", function(){
-		expect(scissors2.className).toContain("hidden");
-		expect(paper2.className).toContain("hidden");
-		expect(well2.className).toContain("hidden");
+	it("should make computer imgs hidden", function(){					expect(scissors2.className, paper2.className, well2.className).toContain("hidden");
 	});
 	
 	it("should remove player img active classes ", function(){
 		expect(scissors.className, paper.className,well.className).not.toContain("active");
-
 	});
 
 	it("should remove hiding from 'continue' button", function(){
@@ -53,8 +49,46 @@ describe("init", function () {
 });
 
 describe ("initializeVariables", function(){
-	it("should check that selectors are defined", function(){
+	it("should have all selectors defined", function(){
 		expect(scissors,scissors2,paper,paper2, well, well2).toBeDefined();
 		expect(continueButton, resetButton, playerName).toBeDefined();
 	});
+});
+
+
+describe ("setComputerNumber", function(){
+	it("should assign magicNumber a value", function() {
+			setComputerNumber();
+	 	   	expect(typeof(magicNumber)).toBe("number");
+			expect(magicNumber).toBeGreaterThan(0);
+	   });
+});
+
+describe ("addEventListeners", function(){
+	it("should add a border to selected item, and remove it for others onClick", function(){
+		scissors.click();
+		expect(scissors.className).toContain("active");
+		well.click();
+		expect(scissors.className).not.toContain("active");
+		paper.click();
+		expect(well.className).not.toContain("active");
+		expect(paper.className).toContain("active");
+		init();
+	});
+	
+	it ("should add relevant PlayerSelection values onClick", function(){
+		expect(playerSelection).toBeLessThan(1);
+		scissors.click();
+		expect(playerSelection).toBe(1);
+		paper.click();
+		expect(playerSelection).toBe(2);
+		well.click();
+		expect(playerSelection).toBe(3);
+	});
+	it ("should call fn displayComputerSelection on continueButton click", function(){
+		
+		});
+	it ("should call fn init on reset button click", function(){
+		
+		});
 });
