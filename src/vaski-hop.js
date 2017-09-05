@@ -1,4 +1,4 @@
-var scissors, paper, well, continueButton, resetButton, playerSelection, magicNumber;
+var scissors, scissors2, paper, paper2, well,well2, continueButton, resetButton, playerSelection, magicNumber;
 
 var computerSelection = function () {
     return Math.floor(Math.random() * 3) + 1;
@@ -7,15 +7,15 @@ var computerSelection = function () {
 var init = function () {
     magicNumber = 0;
     playerSelection = -1;
-    document.querySelector('#scissors2').classList.add('hidden');
-    document.querySelector('#paper2').classList.add('hidden');
-    document.querySelector('#well2').classList.add('hidden');
+   	scissors2.classList.add('hidden');
+    paper2.classList.add('hidden');
+    well2.classList.add('hidden');
     scissors.classList.remove('active');
     paper.classList.remove('active');
     well.classList.remove('active');
-    document.querySelector("#playerName").innerHTML = "Choose wisely";
-    document.querySelector('#continue').classList.remove('hidden');
-    document.querySelector("#playerName").classList.remove('errors');
+    playerName.innerHTML = "Choose wisely";
+	document.querySelector('#continue').classList.remove('hidden');
+   	playerName.classList.remove('errors');
 };
 
 function start() {
@@ -28,10 +28,15 @@ function start() {
 function initializeVariables() {
 
     scissors = document.getElementById('scissors');
-    paper = document.getElementById('paper');
+	scissors2 = document.getElementById('scissors2');
+	paper = document.getElementById('paper');
+	paper2 = document.getElementById('paper2');
     well = document.getElementById('well');
+    well2 = document.getElementById('well2');
+
     continueButton = document.getElementById('continue');
     resetButton = document.getElementById('reset');
+	playerName = document.getElementById('playerName');
 } 
 
 function setComputerNumber() {
@@ -71,7 +76,7 @@ function addEventListeners() {
 
 
 var showPlayerSelection = function () {
-    document.querySelector("#playerName").innerHTML = "Your selection is " + playerSelection;
+    playerName.innerHTML = "Your selection is " + playerSelection;
 };
 
 
@@ -100,23 +105,21 @@ function winner() {
 var displayComputerSelection = function () {
 
     if (playerSelection === -1 || playerSelection === undefined) {
-        document.querySelector("#playerName").innerHTML = "Please select something first!!!";
-        document.querySelector("#playerName").classList.add('errors')
+        playerName.innerHTML = "Please select something first!!!";
+        playerName.classList.add('errors')
         return
     }
     else {
         setComputerNumber();
-        document.querySelector('#continue').classList.add('hidden');
+        continueButton.classList.add('hidden');
 
         if (magicNumber == 1) {
-            document.querySelector('#scissors2').classList.remove('hidden')
+           scissors2.classList.remove('hidden')
         } else if (magicNumber == 2) {
-            document.querySelector('#paper2').classList.remove('hidden')
+            paper2.classList.remove('hidden')
         } else if (magicNumber == 3) {
-            document.querySelector('#well2').classList.remove('hidden')
+            well2.classList.remove('hidden')
         }
-        console.log("computer selection is " + magicNumber);
-        console.log("Player selection is " + playerSelection);
         winner();
     }
 };
