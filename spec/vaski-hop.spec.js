@@ -28,7 +28,8 @@ describe("init", function () {
         expect(playerSelection).toEqual(-1);
     });
 	
-	it("should make computer imgs hidden", function(){					expect(scissors2.className, paper2.className, well2.className).toContain("hidden");
+	it("should make computer imgs hidden", function(){
+		expect(scissors2.className, paper2.className, well2.className).toContain("hidden");
 	});
 	
 	it("should remove player img active classes ", function(){
