@@ -35,9 +35,10 @@ describe("init", function () {
 	});
 	
 	it("should remove player img active classes ", function(){
-		expect(scissors.className).not.toContain("active")});
+		expect(scissors.className).not.toContain("active");
 		expect(paper.className).not.toContain("active");
 		expect(well.className).not.toContain("active");
+	});
 
 	it("should remove hiding from 'continue' button", function(){
 		expect(continueButton.className).not.toContain("hidden");
