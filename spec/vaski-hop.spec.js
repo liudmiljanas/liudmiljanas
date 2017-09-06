@@ -1,3 +1,5 @@
+'use strict';
+
 describe("computerSelection", function () {
 		beforeEach(function () {
         document.body.innerHTML += __html__['index.html'];

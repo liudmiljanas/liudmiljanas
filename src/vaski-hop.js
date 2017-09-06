@@ -1,4 +1,6 @@
-var scissors, scissors2, paper, paper2, well,well2, continueButton, resetButton, playerSelection, magicNumber;
+'use strict';
+
+var scissors, scissors2, paper, paper2, well,well2, continueButton, resetButton, playerSelection, magicNumber, playerName;
 
 var computerSelection = function () {
     return Math.floor(Math.random() * 3) + 1;
