@@ -7,7 +7,7 @@ describe("computerSelection", function () {
     });
 
 	var storeRandom = computerSelection();
-	
+
     it("should provide a number smaller than 0", function () {
         expect(storeRandom).toBeGreaterThan(0);
     	});
@@ -29,11 +29,11 @@ describe("init", function () {
     it("should reset playerSelection to -1", function () {
         expect(playerSelection).toEqual(-1);
     });
-	
+
 	it("should make computer imgs hidden", function(){
 		expect(scissors2.className, paper2.className, well2.className).toContain("hidden");
 	});
-	
+
 	it("should remove player img active classes ", function(){
 		expect(scissors.className, paper.className,well.className).not.toContain("active");
 	});
@@ -44,11 +44,11 @@ describe("init", function () {
 	it("should remove error font styling", function(){
 		expect(playerName.className).not.toContain("errors");
 	});
-	
+
 	it("should add text 'Choose wisely'", function(){
 		expect(playerName.innerHTML).toBe("Choose wisely")
 	});
-		
+
 });
 
 describe ("initializeVariables", function(){
@@ -68,6 +68,7 @@ describe ("setComputerNumber", function(){
 });
 
 describe ("addEventListeners", function(){
+
 	it("should add a border to selected item, and remove it for others onClick", function(){
 		scissors.click();
 		expect(scissors.className).toContain("active");
@@ -78,7 +79,7 @@ describe ("addEventListeners", function(){
 		expect(paper.className).toContain("active");
 		init();
 	});
-	
+
 	it ("should add relevant PlayerSelection values onClick", function(){
 		expect(playerSelection).toBeLessThan(1);
 		scissors.click();
@@ -88,14 +89,22 @@ describe ("addEventListeners", function(){
 		well.click();
 		expect(playerSelection).toBe(3);
 	});
-	it ("should call displayComputerSelection on continueButton click", function(){
-		var displayComputerSelection = sinon.spy();
-		continueButton.click();
-		assertTrue(displayComputerSelection.called);		  
+	it ("jasmine: should call displayComputerSelection on continueButton click", function(){
+        spyOn(window, "displayComputerSelection");
+        start();
+        continueButton.click();
+        expect(window.displayComputerSelection).toHaveBeenCalled();
 	});
+
+    it ("sinon: should call displayComputerSelection on continueButton click", function(){
+        var spy = sinon.spy(window, "displayComputerSelection");
+        start();
+        continueButton.click();
+        expect(spy.called).toBe(true);
+    });
 			
 });
-	
+
 //	describe('an example block', function() {
 //    it('creates a spy', function() {
 //        callMe = jasmine.createSpy('callMe');
