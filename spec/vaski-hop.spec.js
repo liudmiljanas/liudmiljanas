@@ -89,34 +89,31 @@ describe ("addEventListeners", function(){
 		well.click();
 		expect(playerSelection).toBe(3);
 	});
-	it ("jasmine: should call displayComputerSelection on continueButton click", function(){
+	
+	it ("should call displayComputerSelection on continueButton click", function(){
         spyOn(window, "displayComputerSelection");
-        start();
+    	start();
         continueButton.click();
         expect(window.displayComputerSelection).toHaveBeenCalled();
+		init();
+	});
+			
+	it ("should call fn init on reset button click", function(){
+		spyOn(window, "init");
+		start();
+		resetButton.click();
+		expect(window.init).toHaveBeenCalled();
 	});
 
-    it ("sinon: should call displayComputerSelection on continueButton click", function(){
-        var spy = sinon.spy(window, "displayComputerSelection");
-        start();
-        continueButton.click();
-        expect(spy.called).toBe(true);
-    });
-			
 });
 
-//	describe('an example block', function() {
-//    it('creates a spy', function() {
-//        callMe = jasmine.createSpy('callMe');
-//        callMe();
-//        expect(callMe).toHaveBeenCalled();
-//    });
-	
-	
-	
-//	it ("should call fn init on reset button click", function(){
-//		
-//		});
+describe('showPlayerSelection', function(){
+	it ("should change HTML text", function(){
+		scissors.click();
+		expect(playerName.innerHTML).toContain("Your selection is 1");
+	});
+})
+		
 
 //describe ("winner", function(){
 //	it("should not be undefined ", function(){

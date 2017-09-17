@@ -87,7 +87,6 @@ var showPlayerSelection = function () {
 };
 
 
-
 function winner() {
 
     if (playerSelection === magicNumber){
@@ -105,7 +104,6 @@ function winner() {
     }
 
 }
-
 
 // If player choice is done, reveals computer selection, removes continue button, declares winner
 
