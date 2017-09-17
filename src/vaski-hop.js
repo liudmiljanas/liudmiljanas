@@ -70,9 +70,14 @@ function addEventListeners() {
         showPlayerSelection();
     });
 
-    continueButton.addEventListener("click", displayComputerSelection);
 
-    resetButton.addEventListener("click", init);
+  	var nextTurn = function() {
+		continueButton.addEventListener("click", displayComputerSelection)
+	};
+
+	nextTurn();
+	
+  	resetButton.addEventListener("click", init);
 
 }
 

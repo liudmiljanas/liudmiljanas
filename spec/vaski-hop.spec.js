@@ -88,10 +88,30 @@ describe ("addEventListeners", function(){
 		well.click();
 		expect(playerSelection).toBe(3);
 	});
-	it ("should call fn displayComputerSelection on continueButton click", function(){
-		
-		});
-	it ("should call fn init on reset button click", function(){
-		
-		});
+	it ("should call displayComputerSelection on continueButton click", function(){
+		var displayComputerSelection = sinon.spy();
+		continueButton.click();
+		assertTrue(displayComputerSelection.called);		  
+	});
+			
 });
+	
+//	describe('an example block', function() {
+//    it('creates a spy', function() {
+//        callMe = jasmine.createSpy('callMe');
+//        callMe();
+//        expect(callMe).toHaveBeenCalled();
+//    });
+	
+	
+	
+//	it ("should call fn init on reset button click", function(){
+//		
+//		});
+
+//describe ("winner", function(){
+//	it("should not be undefined ", function(){
+//		
+//		expect(winner)
+//	})
+//});
