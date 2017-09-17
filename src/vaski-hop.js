@@ -1,13 +1,13 @@
 'use strict';
 
-var scissors, scissors2, paper, paper2, well,well2, continueButton, resetButton, playerSelection, magicNumber, playerName;
+var scissors, scissors2, paper, paper2, well,well2, continueButton, resetButton, playerSelection, computerSelection, playerName;
 
-var computerSelection = function () {
-    return Math.floor(Math.random() * 3) + 1;
+var setComputerSelection = function () {
+    computerSelection = Math.floor(Math.random() * 3) + 1;
 };
 
 var init = function () {
-    magicNumber = 0;
+    computerSelection = 0;
     playerSelection = -1;
    	scissors2.classList.add('hidden');
     paper2.classList.add('hidden');
@@ -41,9 +41,9 @@ function initializeVariables() {
 	playerName = document.getElementById('playerName');
 } 
 
-function setComputerNumber() {
-    magicNumber = computerSelection();
-} 
+//function assignComputerSelection() {
+//    computerSelection = setComputerSelection();
+//} 
 
 function addEventListeners() {
     scissors.addEventListener("click", function () {
@@ -86,20 +86,21 @@ var showPlayerSelection = function () {
     playerName.innerHTML = "Your selection is " + playerSelection;
 };
 
-
+	
 function winner() {
-
-    if (playerSelection === magicNumber){
+	
+	
+    if (playerSelection === computerSelection){
         window.alert("IT'S A BLOODY DRAW");
     } else if (
-        playerSelection === 1 && magicNumber === 2 ||
-        playerSelection === 2 && magicNumber === 3 ||
-        playerSelection === 3 && magicNumber === 1) {
+        playerSelection === 1 && computerSelection === 2 ||
+        playerSelection === 2 && computerSelection === 3 ||
+        playerSelection === 3 && computerSelection === 1) {
         window.alert("PLAYAR WINS");
     } else if (
-        playerSelection === 1 && magicNumber === 3 ||
-        playerSelection === 2 && magicNumber === 1 ||
-        playerSelection === 3 && magicNumber === 2) {
+        playerSelection === 1 && computerSelection === 3 ||
+        playerSelection === 2 && computerSelection === 1 ||
+        playerSelection === 3 && computerSelection === 2) {
         window.alert("COMPUTAR WINS");
     }
 
@@ -115,14 +116,14 @@ var displayComputerSelection = function () {
         return
     }
     else {
-        setComputerNumber();
+        setComputerSelection();
         continueButton.classList.add('hidden');
 
-        if (magicNumber == 1) {
+        if (computerSelection == 1) {
            scissors2.classList.remove('hidden')
-        } else if (magicNumber == 2) {
+        } else if (computerSelection == 2) {
             paper2.classList.remove('hidden')
-        } else if (magicNumber == 3) {
+        } else if (computerSelection == 3) {
             well2.classList.remove('hidden')
         }
         winner();
