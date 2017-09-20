@@ -6,19 +6,11 @@ var typeScissors = 1;
 var typePaper = 2;
 var typeWell = 3;
 
+var allSelectionTypes = [typeScissors, typePaper, typeWell];
+
 var setComputerSelection = function () {
-    computerSelection = Math.floor(Math.random() * 3) + 1;
-	switch (computerSelection){
-		case 1: 
-			computerSelection = typeScissors;
-			break;
-		case 2:
-			computerSelection = typePaper;
-			break;
-		case 3:
-			computerSelection = typeWell;
-			break;
-	};
+    computerSelection = allSelectionTypes[Math.floor(Math.random() * allSelectionTypes.length)];
+
 };
 
 var init = function () {
@@ -81,6 +73,8 @@ function addEventListeners() {
         playerSelection = typeWell;
         showPlayerSelection();
     });
+	
+	
 	
 	
   	var nextTurn = function() {
