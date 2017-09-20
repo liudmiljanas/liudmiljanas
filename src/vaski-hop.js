@@ -2,17 +2,21 @@
 
 var scissors, scissors2, paper, paper2, well,well2, continueButton, resetButton, playerSelection, computerSelection, playerName;
 
+var typeScissors = 1;
+var typePaper = 2;
+var typeWell = 3;
+
 var setComputerSelection = function () {
     computerSelection = Math.floor(Math.random() * 3) + 1;
 	switch (computerSelection){
 		case 1: 
-			computerSelection = 'scissorsSelected';
+			computerSelection = typeScissors;
 			break;
 		case 2:
-			computerSelection = 'paperSelected';
+			computerSelection = typePaper;
 			break;
 		case 3:
-			computerSelection = 'wellSelected';
+			computerSelection = typeWell;
 			break;
 	};
 };
@@ -58,7 +62,7 @@ function addEventListeners() {
         scissors.classList.toggle('active');
         paper.classList.remove('active');
         well.classList.remove('active');
-        playerSelection = 'scissorsSelected';
+        playerSelection = typeScissors;
         showPlayerSelection();
     });
 
@@ -66,7 +70,7 @@ function addEventListeners() {
         scissors.classList.remove('active');
         paper.classList.toggle('active');
         well.classList.remove('active');
-        playerSelection = 'paperSelected';
+        playerSelection = typePaper;
         showPlayerSelection();
     });
 
@@ -74,11 +78,11 @@ function addEventListeners() {
         scissors.classList.remove('active');
         paper.classList.remove('active');
         well.classList.toggle('active');
-        playerSelection = 'wellSelected';
+        playerSelection = typeWell;
         showPlayerSelection();
     });
-
-
+	
+	
   	var nextTurn = function() {
 		continueButton.addEventListener("click", displayComputerSelection)
 	};
@@ -102,15 +106,15 @@ function calcWinner (){
 			gameOutcome = 'draw';
 			break;
 			
-		case playerSelection === 'scissorsSelected' && computerSelection === 'paperSelected':
-		case playerSelection === 'paperSelected' && computerSelection === 'wellSelected':
-		case playerSelection === 'wellSelected' && computerSelection === 'scissorsSelected':
+		case playerSelection === typeScissors && computerSelection === typePaper:
+		case playerSelection === typePaper && computerSelection === typeWell:
+		case playerSelection === typeWell && computerSelection === typeScissors:
 			gameOutcome = 'playerWins';
 			break;
 		
-		case playerSelection === 'scissorsSelected' && computerSelection === 'wellSelected':
-		case playerSelection === 'paperSelected' && computerSelection === 'scissorsSelected':
-        case playerSelection === 'wellSelected' && computerSelection === 'paperSelected':
+		case playerSelection === typeScissors && computerSelection === typeWell:
+		case playerSelection === typePaper && computerSelection === typeScissors:
+        case playerSelection === typeWell && computerSelection === typePaper:
 			gameOutcome = 'computerWins';
 			break;
 		}
@@ -147,11 +151,11 @@ var displayComputerSelection = function () {
         setComputerSelection();
         continueButton.classList.add('hidden');
 
-        if (computerSelection == 'scissorsSelected') {
+        if (computerSelection == typeScissors) {
            scissors2.classList.remove('hidden')
         } else if (computerSelection == 2) {
             paper2.classList.remove('hidden')
-        } else if (computerSelection == 'wellSelected') {
+        } else if (computerSelection == typeWell) {
             well2.classList.remove('hidden')
         }
         calcWinner();
