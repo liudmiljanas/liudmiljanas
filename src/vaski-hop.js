@@ -153,7 +153,7 @@ var displayComputerSelection = function () {
 
         if (computerSelection == typeScissors) {
            scissors2.classList.remove('hidden')
-        } else if (computerSelection == 2) {
+        } else if (computerSelection == typePaper) {
             paper2.classList.remove('hidden')
         } else if (computerSelection == typeWell) {
             well2.classList.remove('hidden')
