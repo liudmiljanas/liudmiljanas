@@ -1,6 +1,7 @@
 'use strict';
 
-var scissors, scissors2, paper, paper2, well,well2, continueButton, resetButton, playerSelection, computerSelection, playerName;
+var allPlayerImageSelectors, scissors, scissors2, paper, paper2, well,well2, continueButton, resetButton, playerSelection, computerSelection, playerName;
+
 
 var typeScissors = 1;
 var typePaper = 2;
@@ -8,10 +9,18 @@ var typeWell = 3;
 
 var allSelectionTypes = [typeScissors, typePaper, typeWell];
 
+
 var setComputerSelection = function () {
     computerSelection = allSelectionTypes[Math.floor(Math.random() * allSelectionTypes.length)];
 
 };
+
+var removeAllUserSelections = function (){
+	for (var i=0; i<allPlayerImageSelectors.length; i++) {
+		allPlayerImageSelectors[i].classList.remove('active');
+	};
+};
+
 
 var init = function () {
     computerSelection = 0;
@@ -19,9 +28,7 @@ var init = function () {
    	scissors2.classList.add('hidden');
     paper2.classList.add('hidden');
     well2.classList.add('hidden');
-    scissors.classList.remove('active');
-    paper.classList.remove('active');
-    well.classList.remove('active');
+	removeAllUserSelections();
     playerName.innerHTML = "Choose wisely";
 	document.querySelector('#continue').classList.remove('hidden');
    	playerName.classList.remove('errors');
@@ -32,6 +39,8 @@ function start() {
     init();
     addEventListeners();
 } 
+
+
 
 
 function initializeVariables() {
@@ -46,36 +55,39 @@ function initializeVariables() {
     continueButton = document.getElementById('continue');
     resetButton = document.getElementById('reset');
 	playerName = document.getElementById('playerName');
-} 
+	allPlayerImageSelectors = [scissors, paper, well];
+};
 
+
+
+var highlightUserSelection = function (htmlObject){
+	removeAllUserSelections();
+	htmlObject.classList.add('active');
+};
 
 function addEventListeners() {
     scissors.addEventListener("click", function () {
-        scissors.classList.toggle('active');
-        paper.classList.remove('active');
-        well.classList.remove('active');
+		highlightUserSelection(scissors);
         playerSelection = typeScissors;
         showPlayerSelection();
     });
 
     paper.addEventListener("click", function () {
-        scissors.classList.remove('active');
-        paper.classList.toggle('active');
-        well.classList.remove('active');
+		highlightUserSelection(paper);
         playerSelection = typePaper;
         showPlayerSelection();
     });
 
     well.addEventListener("click", function () {
-        scissors.classList.remove('active');
-        paper.classList.remove('active');
-        well.classList.toggle('active');
+        highlightUserSelection(well);
         playerSelection = typeWell;
         showPlayerSelection();
     });
+
 	
-	
-	
+//	setBorder+removeBorder
+// setPlayerSelection
+
 	
   	var nextTurn = function() {
 		continueButton.addEventListener("click", displayComputerSelection)
@@ -114,24 +126,35 @@ function calcWinner (){
 		}
 };
 
-function announceGameResult(){
-	switch (gameOutcome) {
-	  case 'playerWins':
-		window.alert("PLAYAR WINS");
-		break; 		
-
-	  case 'computerWins':
-		window.alert("COMPUTAR WINS");
-		break;
-
-	  case 'draw':
-		window.alert("IT'S A BLOODY DRAW");		
-		break;
-
-	  default:
-		window.alert("Oops something went wrong");
-	};
+var resultTexts = {
+	playerWins: "PLAYAR WINS",
+	computerWins:"COMPUTAR WINS",
+	draw: "IT'S A BLOODY DRAW"
 };
+
+function announceGameResult(){
+	window.alert(resultTexts[gameOutcome])
+};
+	
+
+
+
+	
+//	switch (gameOutcome) {
+//			
+//	  case 'playerWins': gameResultText = "PLAYAR WINS";
+//		break; 		
+//
+//	  case 'computerWins': gameResultText = "COMPUTAR WINS";
+//		break;
+//
+//	  case 'draw': gameResultText = "IT'S A BLOODY DRAW";		
+//		break;
+//
+//	  default: gameResultText = "Oops something went wrong";
+//	};
+//};	
+	
 		
 
 var displayComputerSelection = function () {
