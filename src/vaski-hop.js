@@ -66,7 +66,7 @@ var highlightUserSelection = function (htmlObject) {
 
 function addEventListeners() {
 
-	for (var i = 0; i < allSelectionTypes.length; i++) {
+	for (let i = 0; i < allSelectionTypes.length; i++) {
 
 		allPlayerImageSelectors[i].addEventListener("click", function () {
 			highlightUserSelection(allPlayerImageSelectors[i]);
@@ -77,6 +77,7 @@ function addEventListeners() {
 	};
 
 	var nextTurn = function () {
+		
 		continueButton.addEventListener("click", displayComputerSelection)
 	};
 
