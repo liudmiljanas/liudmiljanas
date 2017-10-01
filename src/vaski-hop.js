@@ -65,28 +65,16 @@ var highlightUserSelection = function (htmlObject) {
 };
 
 function addEventListeners() {
-	scissors.addEventListener("click", function () {
-		highlightUserSelection(scissors);
-		playerSelection = typeScissors;
-		showPlayerSelection();
-	});
 
-	paper.addEventListener("click", function () {
-		highlightUserSelection(paper);
-		playerSelection = typePaper;
-		showPlayerSelection();
-	});
+	for (var i = 0; i < allSelectionTypes.length; i++) {
 
-	well.addEventListener("click", function () {
-		highlightUserSelection(well);
-		playerSelection = typeWell;
-		showPlayerSelection();
-	});
+		allPlayerImageSelectors[i].addEventListener("click", function () {
+			highlightUserSelection(allPlayerImageSelectors[i]);
+			playerSelection = allSelectionTypes[i];
+			showPlayerSelection();
+		})
 
-
-	//	setBorder+removeBorder
-	// setPlayerSelection
-
+	};
 
 	var nextTurn = function () {
 		continueButton.addEventListener("click", displayComputerSelection)
@@ -95,8 +83,39 @@ function addEventListeners() {
 	nextTurn();
 
 	resetButton.addEventListener("click", init);
+};
 
-}
+
+
+
+
+
+
+//		
+//	scissors.addEventListener("click", function () {
+//		highlightUserSelection(scissors);
+//		playerSelection = typeScissors;
+//		showPlayerSelection();
+//	});
+//
+//	paper.addEventListener("click", function () {
+//		highlightUserSelection(paper);
+//		playerSelection = typePaper;
+//		showPlayerSelection();
+//	});
+//
+//	well.addEventListener("click", function () {
+//		highlightUserSelection(well);
+//		playerSelection = typeWell;
+//		showPlayerSelection();
+//	});
+
+
+//	setBorder+removeBorder
+// setPlayerSelection
+
+
+
 
 
 var showPlayerSelection = function () {
