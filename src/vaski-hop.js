@@ -7,10 +7,10 @@ var typePaper = 2;
 var typeWell = 3;
 
 var allSelectionTypes = [typeScissors, typePaper, typeWell];
+var namesForSelections = ['Scissors','Paper', 'Well'];
 
 var setComputerSelection = function () {
 	computerSelection = allSelectionTypes[Math.floor(Math.random() * allSelectionTypes.length)];
-
 };
 
 var removeAllUserSelections = function () {
@@ -38,6 +38,20 @@ var highlightUserSelection = function (htmlObject) {
 	htmlObject.classList.add('active');
 };
 
+var unhideComputerImg = function () {
+	allComputerImgs[computerSelection - 1].classList.remove('hidden');
+
+};
+
+var throwSelectionError = function () {
+	playerName.innerHTML = "Please select something first!!!";
+	playerName.classList.add('errors')
+};
+
+var hideContinueButton = function () {
+	continueButton.classList.add('hidden');
+};
+
 
 var init = function () {
 	computerSelection = 0;
@@ -49,14 +63,11 @@ var init = function () {
 	removeErrorStyle();
 };
 
-
-
 function start() {
 	initializeVariables();
 	init();
 	addEventListeners();
 }
-
 
 function initializeVariables() {
 
@@ -92,7 +103,7 @@ function addEventListeners() {
 
 
 var showPlayerSelectionText = function () {
-	playerName.innerHTML = "Your selection is " + playerSelection;
+	playerName.innerHTML = "Your selection is " + namesForSelections[playerSelection-1];
 };
 
 var gameOutcome, playerWins, computerWins, draw;
@@ -146,18 +157,4 @@ var continueGame = function () {
 		calcWinner();
 		announceGameResult();
 	}
-};
-
-var unhideComputerImg = function () {
-	allComputerImgs[computerSelection - 1].classList.remove('hidden');
-
-};
-
-var throwSelectionError = function () {
-	playerName.innerHTML = "Please select something first!!!";
-	playerName.classList.add('errors')
-};
-
-var hideContinueButton = function () {
-	continueButton.classList.add('hidden');
 };
