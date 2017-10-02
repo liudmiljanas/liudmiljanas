@@ -19,21 +19,37 @@ var removeAllUserSelections = function () {
 	};
 };
 
+var removeErrorStyle = function () {
+	playerName.classList.remove('errors')
+};
+
 var hideComputerImgs = function () {
 	for (var i = 0; i < allComputerImgs.length; i++) {
 		allComputerImgs[i].classList.add('hidden');
 	}
 };
 
+var setDefaultText = function () {
+	playerName.innerHTML = "Choose wisely";
+}
+
+var highlightUserSelection = function (htmlObject) {
+	removeAllUserSelections();
+	htmlObject.classList.add('active');
+};
+
+
 var init = function () {
 	computerSelection = 0;
 	playerSelection = -1;
 	hideComputerImgs();
 	removeAllUserSelections();
-	playerName.innerHTML = "Choose wisely";
+	setDefaultText();
 	document.querySelector('#continue').classList.remove('hidden');
-	playerName.classList.remove('errors');
+	removeErrorStyle();
 };
+
+
 
 function start() {
 	initializeVariables();
@@ -58,12 +74,6 @@ function initializeVariables() {
 	allComputerImgs = [scissors2, paper2, well2];
 };
 
-
-var highlightUserSelection = function (htmlObject) {
-	removeAllUserSelections();
-	htmlObject.classList.add('active');
-};
-
 function addEventListeners() {
 
 	for (let i = 0; i < allSelectionTypes.length; i++) {
@@ -71,23 +81,17 @@ function addEventListeners() {
 		allPlayerImageSelectors[i].addEventListener("click", function () {
 			highlightUserSelection(allPlayerImageSelectors[i]);
 			playerSelection = allSelectionTypes[i];
-			showPlayerSelection();
+			removeErrorStyle();
+			showPlayerSelectionText();
 		})
-
 	};
 
-	var nextTurn = function () {
-
-		continueButton.addEventListener("click", continueGame)
-	};
-
-	nextTurn();
-
+	continueButton.addEventListener("click", continueGame);
 	resetButton.addEventListener("click", init);
 };
 
 
-var showPlayerSelection = function () {
+var showPlayerSelectionText = function () {
 	playerName.innerHTML = "Your selection is " + playerSelection;
 };
 
@@ -123,11 +127,17 @@ function announceGameResult() {
 	window.alert(resultTexts[gameOutcome])
 };
 
-var selectionNotMade = playerSelection === -1 || playerSelection === undefined;
+var selectionNotMade = function () {
+	if (playerSelection === -1 || playerSelection === undefined) {
+		return true;
+	} else {
+		return false
+	}
+};
 
 var continueGame = function () {
 
-	if (selectionNotMade) {
+	if (selectionNotMade()) {
 		throwSelectionError();
 	} else {
 		hideContinueButton();
@@ -138,7 +148,7 @@ var continueGame = function () {
 	}
 };
 
-var unhideComputerImg = function (){
+var unhideComputerImg = function () {
 	allComputerImgs[computerSelection - 1].classList.remove('hidden');
 
 };

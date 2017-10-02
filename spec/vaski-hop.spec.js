@@ -97,11 +97,11 @@ describe ("addEventListeners", function(){
 		expect(playerSelection).toBe(3);
 	});
 	
-	it ("should call displayComputerSelection on continueButton click", function(){
-        spyOn(window, "displayComputerSelection");
+	it ("should call continueGame on continueButton click", function(){
+        spyOn(window, "continueGame");
     	start();
         continueButton.click();
-        expect(window.displayComputerSelection).toHaveBeenCalled();
+        expect(window.continueGame).toHaveBeenCalled();
 		init();
 	});
 			
