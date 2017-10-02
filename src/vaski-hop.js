@@ -52,6 +52,10 @@ var hideContinueButton = function () {
 	continueButton.classList.add('hidden');
 };
 
+function unhideContinueButton (){
+	document.querySelector('#continue').classList.remove('hidden');
+
+};
 
 var init = function () {
 	computerSelection = 0;
@@ -59,7 +63,7 @@ var init = function () {
 	hideComputerImgs();
 	removeAllUserSelections();
 	setDefaultText();
-	document.querySelector('#continue').classList.remove('hidden');
+	unhideContinueButton();
 	removeErrorStyle();
 };
 
