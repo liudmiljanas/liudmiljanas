@@ -77,46 +77,14 @@ function addEventListeners() {
 	};
 
 	var nextTurn = function () {
-		
-		continueButton.addEventListener("click", displayComputerSelection)
+
+		continueButton.addEventListener("click", continueGame)
 	};
 
 	nextTurn();
 
 	resetButton.addEventListener("click", init);
 };
-
-
-
-
-
-
-
-//		
-//	scissors.addEventListener("click", function () {
-//		highlightUserSelection(scissors);
-//		playerSelection = typeScissors;
-//		showPlayerSelection();
-//	});
-//
-//	paper.addEventListener("click", function () {
-//		highlightUserSelection(paper);
-//		playerSelection = typePaper;
-//		showPlayerSelection();
-//	});
-//
-//	well.addEventListener("click", function () {
-//		highlightUserSelection(well);
-//		playerSelection = typeWell;
-//		showPlayerSelection();
-//	});
-
-
-//	setBorder+removeBorder
-// setPlayerSelection
-
-
-
 
 
 var showPlayerSelection = function () {
@@ -155,24 +123,31 @@ function announceGameResult() {
 	window.alert(resultTexts[gameOutcome])
 };
 
-var displayComputerSelection = function () {
+var selectionNotMade = playerSelection === -1 || playerSelection === undefined;
 
-	if (playerSelection === -1 || playerSelection === undefined) {
-		playerName.innerHTML = "Please select something first!!!";
-		playerName.classList.add('errors')
-		return
+var continueGame = function () {
+
+	if (selectionNotMade) {
+		throwSelectionError();
 	} else {
+		hideContinueButton();
 		setComputerSelection();
-		continueButton.classList.add('hidden');
-
-		if (computerSelection == typeScissors) {
-			scissors2.classList.remove('hidden')
-		} else if (computerSelection == typePaper) {
-			paper2.classList.remove('hidden')
-		} else if (computerSelection == typeWell) {
-			well2.classList.remove('hidden')
-		}
+		unhideComputerImg();
 		calcWinner();
 		announceGameResult();
 	}
+};
+
+var unhideComputerImg = function (){
+	allComputerImgs[computerSelection - 1].classList.remove('hidden');
+
+};
+
+var throwSelectionError = function () {
+	playerName.innerHTML = "Please select something first!!!";
+	playerName.classList.add('errors')
+};
+
+var hideContinueButton = function () {
+	continueButton.classList.add('hidden');
 };
