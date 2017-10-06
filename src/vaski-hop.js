@@ -1,13 +1,52 @@
 'use strict';
 
-var allPlayerImageSelectors, allComputerImgs, scissors, scissors2, paper, paper2, well, well2, continueButton, resetButton, playerSelection, computerSelection, playerName;
+var allPlayerImageSelectors, allComputerImgs, scissors, scissors2, paper, paper2, well, well2, continueButton, resetButton, playerSelection, computerSelection, playerName, winningFigure, selections, gameOutcome;
 
 var typeScissors = 1;
 var typePaper = 2;
 var typeWell = 3;
 
+
+function compareSelections(playerSelection, computerSelection) {
+
+	selections = [playerSelection, computerSelection];
+
+	switch (true) {
+		case selections.includes(typeScissors) && selections.includes(typePaper):
+			winningFigure = typeScissors;
+			console.log("winningFigure is " + winningFigure)
+			break;
+		case selections.includes(typePaper) && selections.includes(typeWell):
+			winningFigure = typePaper;
+			break;
+		case selections.includes(typeWell) && selections.includes(typeScissors):
+			winningFigure = typeWell;
+			break;
+		case computerSelection === playerSelection:
+			winningFigure = 'nobody';
+			break;
+	};
+};
+
+function checkWinner() {
+	switch (true) {
+		case winningFigure === playerSelection:
+			gameOutcome = 'playerWins';
+			break;
+		case winningFigure === computerSelection:
+			gameOutcome = 'computerWins';
+			break;
+		case winningFigure === 'nobody':
+			gameOutcome = 'draw';
+			break;
+
+	};
+};
+
+
+
 var allSelectionTypes = [typeScissors, typePaper, typeWell];
-var namesForSelections = ['Scissors','Paper', 'Well'];
+var namesForSelections = ['Scissors', 'Paper', 'Well'];
 
 var setComputerSelection = function () {
 	computerSelection = allSelectionTypes[Math.floor(Math.random() * allSelectionTypes.length)];
@@ -52,14 +91,13 @@ var hideContinueButton = function () {
 	continueButton.classList.add('hidden');
 };
 
-function unhideContinueButton (){
+function unhideContinueButton() {
 	document.querySelector('#continue').classList.remove('hidden');
 
 };
 
+
 var init = function () {
-	computerSelection = 0;
-	playerSelection = -1;
 	hideComputerImgs();
 	removeAllUserSelections();
 	setDefaultText();
@@ -107,30 +145,30 @@ function addEventListeners() {
 
 
 var showPlayerSelectionText = function () {
-	playerName.innerHTML = "Your selection is " + namesForSelections[playerSelection-1];
+	playerName.innerHTML = "Your selection is " + namesForSelections[playerSelection - 1];
 };
 
-var gameOutcome, playerWins, computerWins, draw;
 
-function calcWinner() {
-	switch (true) {
-		case playerSelection === computerSelection:
-			gameOutcome = 'draw';
-			break;
 
-		case playerSelection === typeScissors && computerSelection === typePaper:
-		case playerSelection === typePaper && computerSelection === typeWell:
-		case playerSelection === typeWell && computerSelection === typeScissors:
-			gameOutcome = 'playerWins';
-			break;
-
-		case playerSelection === typeScissors && computerSelection === typeWell:
-		case playerSelection === typePaper && computerSelection === typeScissors:
-		case playerSelection === typeWell && computerSelection === typePaper:
-			gameOutcome = 'computerWins';
-			break;
-	}
-};
+//function calcWinner() {
+//	switch (true) {
+//		case playerSelection === computerSelection:
+//			gameOutcome = 'draw';
+//			break;
+//
+//		case playerSelection === typeScissors && computerSelection === typePaper:
+//		case playerSelection === typePaper && computerSelection === typeWell:
+//		case playerSelection === typeWell && computerSelection === typeScissors:
+//			gameOutcome = 'playerWins';
+//			break;
+//
+//		case playerSelection === typeScissors && computerSelection === typeWell:
+//		case playerSelection === typePaper && computerSelection === typeScissors:
+//		case playerSelection === typeWell && computerSelection === typePaper:
+//			gameOutcome = 'computerWins';
+//			break;
+//	}
+//};
 
 var resultTexts = {
 	playerWins: "PLAYAR WINS",
@@ -158,7 +196,8 @@ var continueGame = function () {
 		hideContinueButton();
 		setComputerSelection();
 		unhideComputerImg();
-		calcWinner();
+		compareSelections(playerSelection, computerSelection);
+		checkWinner();
 		announceGameResult();
 	}
 };
