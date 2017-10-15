@@ -1,58 +1,61 @@
 'use strict';
 
-var allPlayerImageSelectors, allComputerImgs, scissors, scissors2, paper, paper2, well, well2, continueButton, resetButton, playerSelection, computerSelection, playerName, winningFigure, selections, gameOutcome;
+var allPlayerImageSelectors, allComputerImgs, scissors, scissors2, paper, paper2, well, well2, continueButton, resetButton, playerName;
 
-var typeScissors = 1;
-var typePaper = 2;
-var typeWell = 3;
+let playerSelection, computerSelection;
 
 
-function compareSelections(playerSelection, computerSelection) {
-
-	selections = [playerSelection, computerSelection];
-
-	switch (true) {
-		case selections.includes(typeScissors) && selections.includes(typePaper):
-			winningFigure = typeScissors;
-			console.log("winningFigure is " + winningFigure)
-			break;
-		case selections.includes(typePaper) && selections.includes(typeWell):
-			winningFigure = typePaper;
-			break;
-		case selections.includes(typeWell) && selections.includes(typeScissors):
-			winningFigure = typeWell;
-			break;
-		case computerSelection === playerSelection:
-			winningFigure = 'nobody';
-			break;
+function createFigure(associatedNumber, name) {
+	this.associatedNumber = associatedNumber;
+	this.name = name;
+	this.setStrongerThan = function (overWhat) {
+		this.winsAgainst = overWhat;
 	};
+	this.isStrongerThan = function (otherFigure) {
+		return (this.winsAgainst === otherFigure)
+	}
+}
+
+var typeScissors = new createFigure(1, 'Scissors');
+var typePaper = new createFigure(2, 'Paper');
+var typeWell = new createFigure(3, 'Well');
+
+typeScissors.setStrongerThan(typePaper);
+typePaper.setStrongerThan(typeWell);
+typeWell.setStrongerThan(typeScissors);
+
+
+function checkWinner(playerFigure, computerFigure) {
+	switch (true) {
+		case playerFigure == computerFigure:
+			return gameOutcome.draw;
+			break;
+		case playerFigure.isStrongerThan(computerFigure):
+			return gameOutcome.playerWins;
+			break;
+		default:
+			return gameOutcome.computerWins;
+	}
 };
 
-function checkWinner() {
-	switch (true) {
-		case winningFigure === playerSelection:
-			gameOutcome = 'playerWins';
-			break;
-		case winningFigure === computerSelection:
-			gameOutcome = 'computerWins';
-			break;
-		case winningFigure === 'nobody':
-			gameOutcome = 'draw';
-			break;
-
-	};
+const gameOutcome = {
+	playerWins: "PLAYAR WINS",
+	computerWins: "COMPUTAR WINS",
+	draw: "IT'S A BLOODY DRAW"
 };
 
-
+function announceGameResult(someText) {
+	window.alert(someText);
+};
 
 var allSelectionTypes = [typeScissors, typePaper, typeWell];
-var namesForSelections = ['Scissors', 'Paper', 'Well'];
 
 var setComputerSelection = function () {
 	computerSelection = allSelectionTypes[Math.floor(Math.random() * allSelectionTypes.length)];
 };
 
 var removeAllUserSelections = function () {
+	playerSelection = -1;
 	for (var i = 0; i < allPlayerImageSelectors.length; i++) {
 		allPlayerImageSelectors[i].classList.remove('active');
 	};
@@ -78,7 +81,7 @@ var highlightUserSelection = function (htmlObject) {
 };
 
 var unhideComputerImg = function () {
-	allComputerImgs[computerSelection - 1].classList.remove('hidden');
+	allComputerImgs[computerSelection.associatedNumber - 1].classList.remove('hidden');
 
 };
 
@@ -111,8 +114,17 @@ function start() {
 	addEventListeners();
 }
 
+
+//function createSelector (elementName){
+//	var elementName = document.getElementById(elementName);
+//};
+//
+//createSelector(scissors);
+
 function initializeVariables() {
 
+	allPlayerImageSelectors = [scissors, paper, well];
+	allComputerImgs = [scissors2, paper2, well2];
 	scissors = document.getElementById('scissors');
 	scissors2 = document.getElementById('scissors2');
 	paper = document.getElementById('paper');
@@ -123,8 +135,7 @@ function initializeVariables() {
 	continueButton = document.getElementById('continue');
 	resetButton = document.getElementById('reset');
 	playerName = document.getElementById('playerName');
-	allPlayerImageSelectors = [scissors, paper, well];
-	allComputerImgs = [scissors2, paper2, well2];
+
 };
 
 function addEventListeners() {
@@ -145,39 +156,7 @@ function addEventListeners() {
 
 
 var showPlayerSelectionText = function () {
-	playerName.innerHTML = "Your selection is " + namesForSelections[playerSelection - 1];
-};
-
-
-
-//function calcWinner() {
-//	switch (true) {
-//		case playerSelection === computerSelection:
-//			gameOutcome = 'draw';
-//			break;
-//
-//		case playerSelection === typeScissors && computerSelection === typePaper:
-//		case playerSelection === typePaper && computerSelection === typeWell:
-//		case playerSelection === typeWell && computerSelection === typeScissors:
-//			gameOutcome = 'playerWins';
-//			break;
-//
-//		case playerSelection === typeScissors && computerSelection === typeWell:
-//		case playerSelection === typePaper && computerSelection === typeScissors:
-//		case playerSelection === typeWell && computerSelection === typePaper:
-//			gameOutcome = 'computerWins';
-//			break;
-//	}
-//};
-
-var resultTexts = {
-	playerWins: "PLAYAR WINS",
-	computerWins: "COMPUTAR WINS",
-	draw: "IT'S A BLOODY DRAW"
-};
-
-function announceGameResult() {
-	window.alert(resultTexts[gameOutcome])
+	playerName.innerHTML = "Your selection is " + playerSelection.name;
 };
 
 var selectionNotMade = function () {
@@ -196,8 +175,6 @@ var continueGame = function () {
 		hideContinueButton();
 		setComputerSelection();
 		unhideComputerImg();
-		compareSelections(playerSelection, computerSelection);
-		checkWinner();
-		announceGameResult();
+		announceGameResult(checkWinner(playerSelection, computerSelection));
 	}
 };
