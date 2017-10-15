@@ -123,8 +123,7 @@ function start() {
 
 function initializeVariables() {
 
-	allPlayerImageSelectors = [scissors, paper, well];
-	allComputerImgs = [scissors2, paper2, well2];
+
 	scissors = document.getElementById('scissors');
 	scissors2 = document.getElementById('scissors2');
 	paper = document.getElementById('paper');
@@ -135,7 +134,8 @@ function initializeVariables() {
 	continueButton = document.getElementById('continue');
 	resetButton = document.getElementById('reset');
 	playerName = document.getElementById('playerName');
-
+	allPlayerImageSelectors = [scissors, paper, well];
+	allComputerImgs = [scissors2, paper2, well2];
 };
 
 function addEventListeners() {
