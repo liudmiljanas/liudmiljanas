@@ -55,7 +55,7 @@ var setComputerSelection = function () {
 	computerSelection = allSelectionTypes[Math.floor(Math.random() * allSelectionTypes.length)];
 };
 
-var removeAllUserSelections = function () {
+var removeAllPlayerSelections = function () {
 	playerSelection = -1;
 	for (var i = 0; i < allPlayerImageSelectors.length; i++) {
 		allPlayerImageSelectors[i].classList.remove('active');
@@ -77,7 +77,7 @@ var setDefaultText = function () {
 }
 
 var highlightUserSelection = function (htmlObject) {
-	removeAllUserSelections();
+	removeAllPlayerSelections();
 	htmlObject.classList.add('active');
 };
 
@@ -103,7 +103,7 @@ function unhideContinueButton() {
 
 var init = function () {
 	hideComputerImgs();
-	removeAllUserSelections();
+	removeAllPlayerSelections();
 	setDefaultText();
 	unhideContinueButton();
 	removeErrorStyle();
