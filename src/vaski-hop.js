@@ -1,10 +1,10 @@
 'use strict';
 
-var allPlayerImageSelectors, allComputerImgs, scissors, scissors2, paper, paper2, well, well2, continueButton, resetButton, playerName, streakNumber, streakNumberSelector;
+var allPlayerImageSelectors, allComputerImgs, scissors, scissors2, paper, paper2, well, well2, continueButton, resetButton, playerName, streakNumberSelector, wonCountSelector, lostCountSelector, drawCountSelector;
 
 let playerSelection, computerSelection;
 
-streakNumber = 0;
+var [streakNumber, wonCount, lostCount, drawCount] = [0,0,0,0];
 
 function createFigure(associatedNumber, name) {
 	this.associatedNumber = associatedNumber;
@@ -107,7 +107,7 @@ var init = function () {
 	setDefaultText();
 	unhideContinueButton();
 	removeErrorStyle();
-	displayStreakNumber ();
+	displayStats();
 };
 
 function start() {
@@ -133,10 +133,13 @@ function initializeVariables() {
 	well = document.getElementById('well');
 	well2 = document.getElementById('well2');
 	streakNumberSelector = document.getElementById('streak_number');
+	wonCountSelector = document.getElementById('won');
+	lostCountSelector = document.getElementById('lost');
+	drawCountSelector = document.getElementById('draws');
 	continueButton = document.getElementById('continue');
 	resetButton = document.getElementById('reset');
 	playerName = document.getElementById('playerName');
-	
+
 	allPlayerImageSelectors = [scissors, paper, well];
 	allComputerImgs = [scissors2, paper2, well2];
 };
@@ -170,21 +173,29 @@ var selectionNotMade = function () {
 	}
 };
 
+function calcStats() {
 
-
-function calcStreakNumber(){
-		
-	switch(true) {
-		case playerSelection.isStrongerThan(computerSelection): streakNumber += 1;
+	switch (true) {
+		case playerSelection.isStrongerThan(computerSelection):
+			streakNumber += 1;
+			wonCount += 1;
 			break;
-		case computerSelection === playerSelection: streakNumber += 0;
+		case computerSelection === playerSelection:
+			streakNumber += 0;
+			drawCount += 1;
 			break;
-		default: streakNumber = 0;
-			   }	
+		default:
+			streakNumber = 0;
+			lostCount += 1;
+			
+	}
 }
 
-function displayStreakNumber (){
+function displayStats() {
 	streakNumberSelector.innerHTML = streakNumber;
+	wonCountSelector.innerHTML = wonCount;
+	lostCountSelector.innerHTML = lostCount;
+	drawCountSelector.innerHTML = drawCount;
 }
 
 
@@ -197,7 +208,7 @@ var continueGame = function () {
 		setComputerSelection();
 		unhideComputerImg();
 		announceGameResult(checkWinner(playerSelection, computerSelection));
-		calcStreakNumber();
-		displayStreakNumber();
+		calcStats();
+		displayStats();
 	}
 };

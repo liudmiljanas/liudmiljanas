@@ -5,6 +5,11 @@ body {}
   justify-content: center;
 }
 
+table {
+    width: auto;
+
+
+}
 .errors {
   color: red;
   font-size: 24px;
