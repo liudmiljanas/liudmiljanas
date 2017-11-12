@@ -1,9 +1,10 @@
 'use strict';
 
-var allPlayerImageSelectors, allComputerImgs, scissors, scissors2, paper, paper2, well, well2, continueButton, resetButton, playerName;
+var allPlayerImageSelectors, allComputerImgs, scissors, scissors2, paper, paper2, well, well2, continueButton, resetButton, playerName, streakNumber, streakNumberSelector;
 
 let playerSelection, computerSelection;
 
+streakNumber = 0;
 
 function createFigure(associatedNumber, name) {
 	this.associatedNumber = associatedNumber;
@@ -106,6 +107,7 @@ var init = function () {
 	setDefaultText();
 	unhideContinueButton();
 	removeErrorStyle();
+	displayStreakNumber ();
 };
 
 function start() {
@@ -130,10 +132,11 @@ function initializeVariables() {
 	paper2 = document.getElementById('paper2');
 	well = document.getElementById('well');
 	well2 = document.getElementById('well2');
-
+	streakNumberSelector = document.getElementById('streak_number');
 	continueButton = document.getElementById('continue');
 	resetButton = document.getElementById('reset');
 	playerName = document.getElementById('playerName');
+	
 	allPlayerImageSelectors = [scissors, paper, well];
 	allComputerImgs = [scissors2, paper2, well2];
 };
@@ -167,6 +170,24 @@ var selectionNotMade = function () {
 	}
 };
 
+
+
+function calcStreakNumber(){
+		
+	switch(true) {
+		case playerSelection.isStrongerThan(computerSelection): streakNumber += 1;
+			break;
+		case computerSelection === playerSelection: streakNumber += 0;
+			break;
+		default: streakNumber = 0;
+			   }	
+}
+
+function displayStreakNumber (){
+	streakNumberSelector.innerHTML = streakNumber;
+}
+
+
 var continueGame = function () {
 
 	if (selectionNotMade()) {
@@ -176,5 +197,7 @@ var continueGame = function () {
 		setComputerSelection();
 		unhideComputerImg();
 		announceGameResult(checkWinner(playerSelection, computerSelection));
+		calcStreakNumber();
+		displayStreakNumber();
 	}
 };
